@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+<title>URL Board</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="display-5">URLs app</h1>
+        </div>
+    </div>
+    <div class="row">
+        {% for url in url_list %}
+        <div class="col-lg-4 col-md-3 col-sm-10 mr-auto">
+            <div>{{ url.url }}</div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
