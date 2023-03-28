@@ -1,15 +1,15 @@
 from typing import List
 
-from fastapi import Depends, FastAPI, HTTPException, status, Request
-from fastapi.templating import Jinja2Templates
+import requests
+from bs4 import BeautifulSoup
+from fastapi import Depends, FastAPI, HTTPException, Request, status
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 
 import schemas
 from db import Base, SessionLocal, engine
 from models import URL
-import requests
-from bs4 import BeautifulSoup
 
 Base.metadata.create_all(engine)
 
