@@ -74,12 +74,10 @@ def create_url(url: schemas.URLsCreate, session: Session = Depends(get_session))
 
 @app.get("/url/{id}")
 def read_url(id: int):
-    # create a new database session
     session = SessionLocal()
 
     url = session.query(URL).get(id)
     res = get_unique_tags_count(url)
-    # close the session
     session.close()
 
     if not url:
@@ -88,29 +86,8 @@ def read_url(id: int):
     return res
 
 
-# @app.put("/url/{id}")
-# def update_url(id: int):
-#     # create a new database session
-#     session = SessionLocal()
-#
-#     url = session.query(URL).get(id)
-#
-#     if url:
-#         url.url = url
-#         session.commit()
-#
-#     # close the session
-#     session.close()
-#
-#     if not url:
-#         raise HTTPException(status_code=404, detail=f"url item with id {id} not found")
-#
-#     return url
-
-
 @app.delete("/url/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_url(id: int):
-    # create a new database session
     session = SessionLocal()
 
     url = session.query(URL).get(id)
@@ -127,12 +104,10 @@ def delete_url(id: int):
 
 @app.get("/url", response_model=List[schemas.URls])
 def read_url_list(request: Request):
-    # create a new database session
     session = SessionLocal()
 
     url_list = session.query(URL).all()
 
-    # close the session
     session.close()
 
     return url_list
